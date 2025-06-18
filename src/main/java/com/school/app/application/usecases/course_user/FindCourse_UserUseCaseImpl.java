@@ -1,6 +1,7 @@
 package com.school.app.application.usecases.course_user;
 
 import com.school.app.domain.models.Course_User;
+import com.school.app.domain.models.User;
 import com.school.app.domain.ports.in.course_user.FindCourse_UserUseCase;
 import com.school.app.domain.ports.out.Course_UserModelPort;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,10 @@ public class FindCourse_UserUseCaseImpl implements FindCourse_UserUseCase {
     @Override
     public List<Course_User> getAll() {
         return course_userModelPort.findAll();
+    }
+
+    @Override
+    public List<User> getUsersByCourseId(Long courseId) {
+        return course_userModelPort.getUsersByCourseId(courseId);
     }
 }

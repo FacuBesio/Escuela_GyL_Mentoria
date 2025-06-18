@@ -3,7 +3,7 @@ package com.school.app.application.mappers;
 import com.school.app.application.dto.course.CourseDTOResponse;
 import com.school.app.application.dto.user.UserDTORequest;
 import com.school.app.application.dto.user.UserDTOResponse;
-import com.school.app.application.dto.user.UserDTOResponseWithCourses;
+import com.school.app.application.dto.user.UserDTOResponseSimplified;
 import com.school.app.application.services.role.impl.RoleModelService;
 import com.school.app.application.services.school.impl.SchoolModelService;
 import com.school.app.domain.models.*;
@@ -39,7 +39,7 @@ public abstract class UserDTOMapper {
 
     public abstract List<UserDTOResponse> toDtoList(List<User> users);
 
-    public abstract UserDTOResponseWithCourses toSimplifiedDTO(UserDTOResponse userDTOResponse);
+    public abstract UserDTOResponseSimplified toSimplifiedDTO(UserDTOResponse userDTOResponse);
 
     @Named("mapSchoolIdToSchool")
     protected School mapSchoolIdToSchool(Long schoolId) {

@@ -1,6 +1,7 @@
 package com.school.app.application.services.course_user.impl;
 
 import com.school.app.domain.models.Course_User;
+import com.school.app.domain.models.User;
 import com.school.app.domain.ports.in.course_user.CreateCourse_UserUseCase;
 import com.school.app.domain.ports.in.course_user.DeleteCourse_UserUseCase;
 import com.school.app.domain.ports.in.course_user.FindCourse_UserUseCase;
@@ -48,6 +49,11 @@ public class Course_UserModelService implements CreateCourse_UserUseCase, Delete
     @Override
     public List<Course_User> getAll() {
         return findCourse_UserUseCase.getAll();
+    }
+
+    @Override
+    public List<User> getUsersByCourseId(Long courseId) {
+        return findCourse_UserUseCase.getUsersByCourseId(courseId);
     }
 
     @Override

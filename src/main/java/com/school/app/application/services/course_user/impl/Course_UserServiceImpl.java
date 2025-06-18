@@ -2,23 +2,30 @@ package com.school.app.application.services.course_user.impl;
 
 import com.school.app.application.dto.course_user.Course_UserDTORequest;
 import com.school.app.application.dto.course_user.Course_UserDTOResponse;
+import com.school.app.application.dto.user.UserDTOResponse;
+import com.school.app.application.dto.user.UserDTOResponseSimplified;
 import com.school.app.application.mappers.Course_UserDTOMapper;
+import com.school.app.application.mappers.UserDTOMapper;
 import com.school.app.application.services.course_user.Course_UserService;
 import com.school.app.domain.models.Course_User;
+import com.school.app.domain.models.User;
 import com.school.app.infrastructure.exceptions.GenericNoContentException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class Course_UserServiceImpl implements Course_UserService {
 
     private final Course_UserModelService course_userModelService;
     private final Course_UserDTOMapper course_userDTOMapper;
+    private final UserDTOMapper userDTOMapper;
 
-    public Course_UserServiceImpl(Course_UserModelService course_userModelService, Course_UserDTOMapper course_userDTOMapper) {
+    public Course_UserServiceImpl(Course_UserModelService course_userModelService, Course_UserDTOMapper course_userDTOMapper, UserDTOMapper userDTOMapper) {
         this.course_userModelService = course_userModelService;
         this.course_userDTOMapper = course_userDTOMapper;
+        this.userDTOMapper = userDTOMapper;
     }
 
     @Override
@@ -75,5 +82,16 @@ public class Course_UserServiceImpl implements Course_UserService {
         course_user.setEnabled(false);
         Course_User disableCourse_User = course_userModelService.logicalDeletion(course_user);
         return course_userDTOMapper.toDto(disableCourse_User);
+    }
+
+    @Override
+    public List<UserDTOResponseSimplified> getUsersByCourseId(Long courseId) {
+        List<User> users = course_userModelService.getUsersByCourseId(courseId);
+        if (users.isEmpty()) {
+            throw new GenericNoContentException("No users were found in the database for courseId '"+courseId+"'.");
+        }
+        return users.stream()
+                .map(user -> userDTOMapper.toSimplifiedDTO(userDTOMapper.toDto(user)))
+                .collect(Collectors.toList());
     }
 }

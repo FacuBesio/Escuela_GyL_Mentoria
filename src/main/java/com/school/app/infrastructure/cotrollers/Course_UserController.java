@@ -3,6 +3,8 @@ package com.school.app.infrastructure.cotrollers;
 
 import com.school.app.application.dto.course_user.Course_UserDTORequest;
 import com.school.app.application.dto.course_user.Course_UserDTOResponse;
+import com.school.app.application.dto.user.UserDTOResponse;
+import com.school.app.application.dto.user.UserDTOResponseSimplified;
 import com.school.app.application.services.course_user.Course_UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -51,6 +53,11 @@ public class Course_UserController {
     @DeleteMapping("/logicalDeletion/{id}")
     public Course_UserDTOResponse logicalDeletion(@PathVariable("id") Long course_userId) {
         return course_userService.logicalDeletion(course_userId);
+    }
+
+    @GetMapping("getUsersByCourseId/{courseId}")
+    public List<UserDTOResponseSimplified> getUsersByCourseId(@PathVariable("courseId") Long courseId) {
+        return course_userService.getUsersByCourseId(courseId);
     }
 
 }

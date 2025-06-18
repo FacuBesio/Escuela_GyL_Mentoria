@@ -2,6 +2,8 @@ package com.school.app.application.services.course_user;
 
 import com.school.app.application.dto.course_user.Course_UserDTORequest;
 import com.school.app.application.dto.course_user.Course_UserDTOResponse;
+import com.school.app.application.dto.user.UserDTOResponseSimplified;
+
 
 import java.util.List;
 
@@ -18,4 +20,6 @@ public interface Course_UserService {
     Course_UserDTOResponse delete(Long id);
 
     Course_UserDTOResponse logicalDeletion(Long id);
+
+    List<UserDTOResponseSimplified> getUsersByCourseId(Long courseId);
 }
