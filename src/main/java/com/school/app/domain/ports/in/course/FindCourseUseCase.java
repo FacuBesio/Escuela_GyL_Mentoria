@@ -11,4 +11,6 @@ public interface FindCourseUseCase {
     Optional<Course> getById(Long id);
 
     Optional<Course> getByName(String name);
+
+    List<Course> getCoursesBySchoolId(Long schoolId);
 }

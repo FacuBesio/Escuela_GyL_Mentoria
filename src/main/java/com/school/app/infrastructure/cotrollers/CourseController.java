@@ -42,6 +42,11 @@ public class CourseController {
         return courseService.getByName(name);
     }
 
+    @GetMapping("/getCoursesBySchoolId/{schoolId}")
+    public List<CourseDTOResponse> getCoursesBySchoolId(@PathVariable("schoolId") Long schoolId) {
+        return courseService.getCoursesBySchoolId(schoolId);
+    }
+
     @PutMapping("/{id}")
     public CourseDTOResponse update(@PathVariable("id") Long courseId, @RequestBody CourseDTORequest courseToUpdate) {
         return courseService.update(courseId, courseToUpdate);

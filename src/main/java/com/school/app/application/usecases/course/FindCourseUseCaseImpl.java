@@ -32,4 +32,9 @@ public class FindCourseUseCaseImpl implements FindCourseUseCase {
         return courseModelPort.findByName(name);
     }
 
+    @Override
+    public List<Course> getCoursesBySchoolId(Long schoolId) {
+        return courseModelPort.getCoursesBySchoolId(schoolId);
+    }
+
 }

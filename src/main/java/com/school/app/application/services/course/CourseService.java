@@ -15,6 +15,8 @@ public interface CourseService {
 
     CourseDTOResponse getByName(String name);
 
+    List<CourseDTOResponse> getCoursesBySchoolId(Long schoolId);
+
     CourseDTOResponse update(Long courseId, CourseDTORequest courseDtoToUpdate);
 
     CourseDTOResponse delete(Long id);

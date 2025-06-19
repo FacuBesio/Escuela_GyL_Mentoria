@@ -53,6 +53,15 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<CourseDTOResponse> getCoursesBySchoolId(Long schoolId) {
+        List<Course> courses = courseModelService.getCoursesBySchoolId(schoolId);
+        if (courses.isEmpty()) {
+            throw new GenericNoContentException("No courses were found in the database for schoolId '"+schoolId+"'.");
+        }
+        return courseDTOMapper.toDtoList(courses);
+    }
+
+    @Override
     public CourseDTOResponse update(Long courseId, CourseDTORequest courseDto) {
         Course course = courseModelService.getById(courseId)
                 .orElseThrow(() -> new GenericErrorException("CANNOT UPDATE. Course with id '" + courseId + "' not found."));

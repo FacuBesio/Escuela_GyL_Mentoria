@@ -61,6 +61,15 @@ public class CourseModelAdapter implements CourseModelPort {
     }
 
     @Override
+    public List<Course> getCoursesBySchoolId(Long schoolId) {
+        List<Course> courses = jpaCourseRepository.findCoursesBySchoolId(schoolId)
+                .stream()
+                .map((courseEntity) -> courseDomainMapper.toDomainModel(courseEntity))
+                .collect(Collectors.toList());
+        return courses;
+    }
+
+    @Override
     public Course update(Course course) {
         CourseEntity courseEntity = courseDomainMapper.fromDomainModel(course);
         CourseEntity updatedCourseEntity = jpaCourseRepository.save(courseEntity);

@@ -51,6 +51,11 @@ public class CourseModelService implements CreateCourseUseCase, DeleteCourseUseC
     }
 
     @Override
+    public List<Course> getCoursesBySchoolId(Long schoolId) {
+        return findCourseUseCase.getCoursesBySchoolId(schoolId);
+    }
+
+    @Override
     public List<Course> getAll() {
         return findCourseUseCase.getAll();
     }

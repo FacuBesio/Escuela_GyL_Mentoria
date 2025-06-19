@@ -16,6 +16,8 @@ public interface CourseModelPort {
 
     Optional<Course> findByName(String name);
 
+    List<Course> getCoursesBySchoolId(Long schoolId);
+
     Course update(Course course);
 
     Boolean delete(Long id);
